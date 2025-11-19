@@ -1,0 +1,31 @@
+package in.bushansigur.moneymanager.repository;
+
+import in.bushansigur.moneymanager.entity.ExpenseEntity;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Repository
+public interface ExpenseRepository extends JpaRepository<ExpenseEntity, Long> {
+
+    List<ExpenseEntity> findByProfileIdOrderByDateDesc(Long profileId);
+
+    List<ExpenseEntity> findTop5ByProfileIdOrderByDateDesc(Long profileId);
+
+
+    @Query("SELECT SUM(e.amount) FROM ExpenseEntity e WHERE e.profile.id = :profileId")
+    BigDecimal findTotalExpenseByProfileID(@Param("profileId") Long profileId);
+
+    List<ExpenseEntity> findByProfileIdAndDateBetweenAndNameContainingIgnoreCase(
+            Long profileId, LocalDate start, LocalDate end, String name, Sort sort);
+
+    List<ExpenseEntity> findByProfileIdAndDateBetween(Long profileId, LocalDate start, LocalDate end);
+
+}
