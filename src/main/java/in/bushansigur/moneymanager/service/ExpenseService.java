@@ -32,6 +32,11 @@ public class ExpenseService {
         return toDTO(newExpense);
     }
 
+    //notification
+    List<ExpenseDTO> getExpenseForCurrentUserOnDate(Long profileId, LocalDate date){
+        List<ExpenseEntity> expense = expenseRepository.findByProfileIdAndDate(profileId, date);
+        return expense.stream().map(this::toDTO).toList();
+    }
     public List<ExpenseDTO> getCurrentMonthExpenseForUser() {
         ProfileEntity profile = profileService.getCurrentProfile();
         LocalDate  startDate = LocalDate.now();

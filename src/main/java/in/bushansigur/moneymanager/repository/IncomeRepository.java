@@ -1,5 +1,6 @@
 package in.bushansigur.moneymanager.repository;
 
+import in.bushansigur.moneymanager.entity.ExpenseEntity;
 import in.bushansigur.moneymanager.entity.IncomeEntity;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,4 +27,5 @@ public interface IncomeRepository extends JpaRepository<IncomeEntity, Long> {
 
     List<IncomeEntity> findByProfileIdAndDateBetween(
             Long profileId, LocalDate start, LocalDate end);
+    List<IncomeEntity> findByProfileIdAndDate(Long profileId, LocalDate date);
 }

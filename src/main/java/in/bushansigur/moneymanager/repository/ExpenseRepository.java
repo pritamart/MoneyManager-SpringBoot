@@ -27,5 +27,6 @@ public interface ExpenseRepository extends JpaRepository<ExpenseEntity, Long> {
             Long profileId, LocalDate start, LocalDate end, String name, Sort sort);
 
     List<ExpenseEntity> findByProfileIdAndDateBetween(Long profileId, LocalDate start, LocalDate end);
+    List<ExpenseEntity> findByProfileIdAndDate(Long profileId, LocalDate date);
 
 }

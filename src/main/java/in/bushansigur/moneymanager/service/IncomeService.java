@@ -43,6 +43,11 @@ public class IncomeService {
                 .map(this::toDTO)
                 .toList();
     }
+    //notification
+    List<IncomeDTO> getExpenseForCurrentUserOnDate(Long profileId, LocalDate date){
+        List<IncomeEntity> income = incomeRepository.findByProfileIdAndDate(profileId, date);
+        return income.stream().map(this::toDTO).toList();
+    }
 
     public void  deleteIncome(Long incomeId){
         ProfileEntity profile = profileService.getCurrentProfile();
