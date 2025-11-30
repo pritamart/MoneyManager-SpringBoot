@@ -1,7 +1,5 @@
 package in.bushansigur.moneymanager.dto;
 
-import in.bushansigur.moneymanager.entity.CategoryEntity;
-import in.bushansigur.moneymanager.entity.ProfileEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
